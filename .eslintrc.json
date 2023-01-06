@@ -14,5 +14,5 @@
         "react/prop-types": "error",
         "react/destructuring-assignment": "warn",
         "no-debugger": "off"
-    },
+    }
 }

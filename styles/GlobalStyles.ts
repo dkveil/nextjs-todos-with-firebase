@@ -9,6 +9,7 @@ export const GlobalStyles = createGlobalStyle`
         padding: 0;
         font-family: 'Montserrat', sans-serif;
     }
+
     html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
     a, abbr, acronym, address, big, cite, code,
@@ -26,7 +27,7 @@ export const GlobalStyles = createGlobalStyle`
         padding: 0;
         border: 0;
         font-size: 100%;
-        font: inherit;
+        font-family: 'Montserrat', sans-serif;
         vertical-align: baseline;
     }
     article, aside, details, figcaption, figure,
@@ -48,8 +49,4 @@ export const GlobalStyles = createGlobalStyle`
         border-collapse: collapse;
         border-spacing: 0;
     }
-    :root {
-        --color-test: black;
-    }
-
 `
