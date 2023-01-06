@@ -1,11 +1,11 @@
 import React from 'react';
-import { ContentWrapper, Wrapper, StyledUserIcon } from './Header.styles';
+import { ContentWrapper, HeaderWrapper, StyledUserIcon } from './Header.styles';
 import { Container } from '../../containers/container';
 import Link from 'next/link';
 
 const Header = () => {
     return (
-        <Wrapper>
+        <HeaderWrapper>
             <Container>
                 <ContentWrapper>
                     <Link href="/">
@@ -14,7 +14,7 @@ const Header = () => {
                     <StyledUserIcon />
                 </ContentWrapper>
             </Container>
-        </Wrapper>
+        </HeaderWrapper>
     );
 };
 

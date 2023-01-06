@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import { FaUserAlt } from 'react-icons/fa'
 
-export const Wrapper = styled.header`
-    position: sticky;
+export const HeaderWrapper = styled.header`
+    position: fixed;
+    width: 100%;
     height: 80px;
     background-color: ${({theme}) => theme.COLORS.black};
     color: white;
     border-bottom: 2px solid ${({theme}) => theme.COLORS.white};
+    z-index: 99999;
 `
 
 export const ContentWrapper = styled.div`
