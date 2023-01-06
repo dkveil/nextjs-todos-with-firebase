@@ -18,7 +18,6 @@ export const ContentWrapper = styled.div`
         text-transform: uppercase;
         font-size: 42px;
         color: white;
-        margin-bottom: 20px;
     }
 
     form{
@@ -27,6 +26,7 @@ export const ContentWrapper = styled.div`
         flex-direction: column;
         gap: 10px;
         width: 100%;
+        margin: 20px 0;
 
         input, button, .error{
             width: 300px;
@@ -40,6 +40,7 @@ export const ContentWrapper = styled.div`
             color: ${({theme}) => theme.COLORS.white};
             border: 1px solid ${({theme}) => theme.COLORS.white};
             font-size: 16px;
+            outline: none;
         }
 
         button {
@@ -60,7 +61,13 @@ export const ContentWrapper = styled.div`
             color: #F44336;
             border: 1px solid #F44336;
             text-align: center;
+            font-weight: 700;
         }
+    }
+
+    h3{
+        cursor: pointer;
+        color: ${({theme}) => theme.COLORS.white}
     }
 
 `
