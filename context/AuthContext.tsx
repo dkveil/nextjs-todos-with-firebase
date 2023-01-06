@@ -23,13 +23,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [loading, setLoading] = React.useState<boolean>(false);
     const userInfo = React.useRef();
 
-    const handleRegister = (email: string, password: string) => {
-        createUserWithEmailAndPassword(auth, email, password);
-    };
+    const handleRegister = (email: string, password: string) => createUserWithEmailAndPassword(auth, email, password);
 
-    const handleLogin = (email: string, password: string) => {
-        signInWithEmailAndPassword(auth, email, password);
-    };
+    const handleLogin = (email: string, password: string) => signInWithEmailAndPassword(auth, email, password);
 
     const handleLogout = () => signOut(auth);
 
