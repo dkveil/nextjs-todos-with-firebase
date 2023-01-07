@@ -52,7 +52,7 @@ const Login = () => {
             try {
                 await handleRegister(email, password);
             } catch (error) {
-                setError('sss');
+                setError('Something went wrong with your register');
             }
             setErrors({});
         },
