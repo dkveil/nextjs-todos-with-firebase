@@ -15,6 +15,8 @@ const UserInterface = () => {
     const [addTodoMode, setAddTodoMode] = React.useState<boolean>(false);
     const [todo, setTodo] = React.useState<string>('');
     const [todoItems, setTodoItems] = React.useState<ITodo[]>([]);
+    const [editingTask, setEditingTask] = React.useState<string | null>(null);
+    const [editingValue, setEditingValue] = React.useState<string>('');
 
     const handleAddTodoInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTodo(e.target.value);
@@ -37,6 +39,11 @@ const UserInterface = () => {
         }
     };
 
+    const handleOpenEdit = (id: string, content: string) => {
+        setEditingTask(id);
+        setEditingValue(content);
+    };
+
     const handleEditTodo = (id: string, newValue: string) => {
         setTodoItems(
             todoItems.map((todo) => {
@@ -45,6 +52,8 @@ const UserInterface = () => {
                 } else return todo;
             })
         );
+        setEditingTask(null);
+        setEditingValue('');
     };
 
     return (
@@ -71,9 +80,14 @@ const UserInterface = () => {
                             <TodoCard
                                 key={todo.id}
                                 id={todo.id}
+                                editingValue={editingValue}
                                 content={todo.content}
                                 handleDelete={handleDeleteTodo}
                                 handleEdit={handleEditTodo}
+                                editing={editingTask === todo.id}
+                                closeEditing={() => setEditingTask(null)}
+                                handleOpenEdit={handleOpenEdit}
+                                setValue={(e: React.ChangeEvent<HTMLInputElement>) => setEditingValue(e.target.value)}
                             />
                         ))}
                     </TodosWrapper>

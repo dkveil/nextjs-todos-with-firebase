@@ -6,41 +6,25 @@ import { MdDone } from 'react-icons/md';
 
 interface ITodoCard {
     handleDelete: (id: string) => void;
+    handleOpenEdit: (id: string, content: string) => void;
     handleEdit: (id: string, newValue: string) => void;
     id: string;
     content: string;
+    editing: boolean;
+    closeEditing: () => void;
+    editingValue: string;
+    setValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TodoCard = ({ handleDelete, handleEdit, id, content }: ITodoCard) => {
-    const [editing, setEditing] = React.useState<boolean>(false);
-    const [editedValue, setEditedValue] = React.useState<string>(content);
-
-    const toggleEditing = () => setEditing((prev) => !prev);
-
-    React.useEffect(() => {
-        if (!editing && editedValue !== content) setEditedValue(content);
-    }, [editing]);
-
-    const handleEditTask = () => {
-        setEditing(false);
-        setEditedValue(editedValue);
-        handleEdit(id, editedValue);
-    };
-
+const TodoCard = ({ handleDelete, id, content, editing, handleEdit, handleOpenEdit, setValue, editingValue }: ITodoCard) => {
     return (
         <TodoCardWrapper>
-            <div>
-                {editing ? (
-                    <input
-                        value={editedValue}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEditedValue(e.target.value)}
-                        autoFocus
-                    />
-                ) : (
-                    content
-                )}
-            </div>
-            {editing ? <MdDone onClick={handleEditTask} /> : <BsFillPencilFill onClick={toggleEditing} />}
+            <div>{editing ? <input value={editingValue} onChange={setValue} autoFocus /> : content}</div>
+            {editing ? (
+                <MdDone onClick={() => handleEdit(id, editingValue)} />
+            ) : (
+                <BsFillPencilFill onClick={() => handleOpenEdit(id, content)} />
+            )}
 
             <IoMdClose onClick={() => handleDelete(id)} />
         </TodoCardWrapper>
