@@ -8,7 +8,7 @@ export const HeaderWrapper = styled.header`
     background-color: ${({theme}) => theme.COLORS.black};
     color: white;
     border-bottom: 2px solid ${({theme}) => theme.COLORS.white};
-    z-index: 99999;
+    z-index: 9;
 `
 
 export const ContentWrapper = styled.div`
