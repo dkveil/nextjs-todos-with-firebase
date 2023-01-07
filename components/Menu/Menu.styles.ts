@@ -26,6 +26,7 @@ export const ContentWrapper = styled.div`
         background-color: ${({theme}) => theme.COLORS.black};
         color: ${({theme}) => theme.COLORS.white};
         border: none;
+        cursor: pointer;
 
         :hover{
             background-color: rgba(0,0,0,0.6);

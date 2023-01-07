@@ -4,6 +4,8 @@ import { FaUserAlt } from 'react-icons/fa'
 export const HeaderWrapper = styled.header`
     position: fixed;
     width: 100%;
+    top: 0;
+    left: 0;
     height: 80px;
     background-color: ${({theme}) => theme.COLORS.black};
     color: white;
