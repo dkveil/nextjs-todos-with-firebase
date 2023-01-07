@@ -7,14 +7,13 @@ import TodoCard from '../TodoCard/TodoCard';
 import { v4 as uuidv4 } from 'uuid';
 
 interface ITodo {
-    id: string;
-    content: string;
+    [id: string]: string;
 }
 
 const UserInterface = () => {
     const [addTodoMode, setAddTodoMode] = React.useState<boolean>(false);
     const [todo, setTodo] = React.useState<string>('');
-    const [todoItems, setTodoItems] = React.useState<ITodo[]>([]);
+    const [todoItems, setTodoItems] = React.useState<ITodo>({});
     const [editingTask, setEditingTask] = React.useState<string | null>(null);
     const [editingValue, setEditingValue] = React.useState<string>('');
 
@@ -22,15 +21,21 @@ const UserInterface = () => {
         setTodo(e.target.value);
     };
 
-    const handleAddTodo = () => {
+    const handleAddTodo = async () => {
         if (todo.length > 0) {
-            setTodoItems((prev) => [...prev, { id: uuidv4(), content: todo }]);
+            setTodoItems({ [uuidv4()]: todo, ...todoItems });
             setTodo('');
         }
     };
 
     const handleDeleteTodo = (id: string) => {
-        setTodoItems(todoItems.filter((todo) => todo.id !== id));
+        setTodoItems(
+            Object.keys(todoItems)
+                .filter((key) => !key.includes(id))
+                .reduce((current, key) => {
+                    return Object.assign(current, { [key]: todoItems[key] });
+                }, {})
+        );
     };
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -45,13 +50,7 @@ const UserInterface = () => {
     };
 
     const handleEditTodo = (id: string, newValue: string) => {
-        setTodoItems(
-            todoItems.map((todo) => {
-                if (todo.id === id) {
-                    return { ...todo, content: newValue };
-                } else return todo;
-            })
-        );
+        setTodoItems({ ...todoItems, [id]: newValue });
         setEditingTask(null);
         setEditingValue('');
     };
@@ -76,15 +75,15 @@ const UserInterface = () => {
                         </button>
                     )}
                     <TodosWrapper>
-                        {todoItems.map((todo) => (
+                        {Object.keys(todoItems).map((id) => (
                             <TodoCard
-                                key={todo.id}
-                                id={todo.id}
+                                key={id}
+                                id={id}
                                 editingValue={editingValue}
-                                content={todo.content}
+                                content={todoItems[id]}
                                 handleDelete={handleDeleteTodo}
                                 handleEdit={handleEditTodo}
-                                editing={editingTask === todo.id}
+                                editing={editingTask === id}
                                 closeEditing={() => setEditingTask(null)}
                                 handleOpenEdit={handleOpenEdit}
                                 setValue={(e: React.ChangeEvent<HTMLInputElement>) => setEditingValue(e.target.value)}

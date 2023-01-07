@@ -1,12 +1,16 @@
 import React from 'react';
 import { auth, db } from '../firebase';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
+import {
+    User as FirebaseUser,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+} from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 
-interface IUser {}
-
 interface IAuthContext {
-    user: IUser | null;
+    user: FirebaseUser | null;
     loading: boolean;
     handleRegister: (email: string, password: string) => void;
     handleLogin: (email: string, password: string) => void;
@@ -19,7 +23,7 @@ const AuthContext = React.createContext({} as IAuthContext);
 export const useAuthContext = () => React.useContext(AuthContext);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    const [user, setUser] = React.useState<IUser | null>(null);
+    const [user, setUser] = React.useState<FirebaseUser | null>(null);
     const [loading, setLoading] = React.useState<boolean>(false);
     const userInfo = React.useRef();
 
