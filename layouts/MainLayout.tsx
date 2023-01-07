@@ -17,7 +17,7 @@ const MainLayout = ({ children }: IMainLayout) => {
     const toggleMenu = () => setMenuOpen((prev) => !prev);
 
     React.useEffect(() => {
-        user && setMenuOpen(false)
+        user && setMenuOpen(false);
     }, [user]);
 
     return (

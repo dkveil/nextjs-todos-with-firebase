@@ -65,6 +65,7 @@ export const AddTodoInputWrapper = styled.div`
 export const IconButton = styled.button`
     background-color: ${({theme}) => theme.COLORS.white};
     border: none;
+    cursor: pointer;
 `
 
 export const TodosWrapper = styled.div`
@@ -72,4 +73,5 @@ export const TodosWrapper = styled.div`
     flex-direction: column;
     width: 100%;
     color: ${({theme}) => theme.COLORS.white};
+    gap: 5px;
 `
