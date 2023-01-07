@@ -37,6 +37,16 @@ export const ContentWrapper = styled.div`
             background-color: rgba(255,255,255,0.8);
         }
     }
+
+    .error{
+        background-color: #ef9a9a;
+        color: #F44336;
+        border: 1px solid #F44336;
+        text-align: center;
+        font-weight: 700;
+        padding: 1rem;
+        width: 100%;
+    }
 `
 
 export const AddTodoInputWrapper = styled.div`

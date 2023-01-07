@@ -7,7 +7,6 @@ import {
     signOut,
     onAuthStateChanged,
 } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
 
 interface IAuthContext {
     user: FirebaseUser | null;
@@ -24,7 +23,7 @@ export const useAuthContext = () => React.useContext(AuthContext);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = React.useState<FirebaseUser | null>(null);
-    const [loading, setLoading] = React.useState<boolean>(false);
+    const [loading, setLoading] = React.useState<boolean>(true);
     const userInfo = React.useRef();
 
     const handleRegister = (email: string, password: string) => createUserWithEmailAndPassword(auth, email, password);
